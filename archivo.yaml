@@ -1,0 +1,312 @@
+ #Generated using the tool https://8gwifi.org/kube1.jsp
+#Total Number of Services Found 2
+
+#Generating kubernetes YAML file for the Service sonarqube.yml
+#This is Service Configuration Kube definition
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    generated.by: 8gwifi.org
+  name: service.name.2
+  namespace: default
+spec:
+  ports:
+  - name: nameme_01
+    port: 9000
+    protocol: tcp
+    targetPort: 9000
+  selector:
+    app: demo.1
+  type: NodePort
+
+
+#This is Deployment Configuration Kube definition
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: demo.1
+  name: deployment.name.31
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: demo.1
+  template:
+    metadata:
+      labels:
+        app: demo.1
+      namespace: default
+    spec:
+      containers:
+      - env:
+        - name: SONAR_JDBC_URL
+          value: jdbc:postgresql://db:5432/sonar
+        - name: SONAR_JDBC_USERNAME
+          value: sonar
+        - name: SONAR_JDBC_PASSWORD
+          value: sonar
+        image: sonarqube:community
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9000
+          name: portname.0
+          protocol: tcp
+        volumeMounts:
+        - mountPath: /opt/sonarqube/data
+          name: pvo.0
+        - mountPath: /opt/sonarqube/extensions
+          name: pvo.1
+        - mountPath: /opt/sonarqube/logs
+          name: pvo.2
+      terminationGracePeriodSeconds: 0
+      volumes:
+      - name: pvo.0
+        persistentVolumeClaim:
+          claimName: claimname.0
+      - name: pvo.1
+        persistentVolumeClaim:
+          claimName: claimname.1
+      - name: pvo.2
+        persistentVolumeClaim:
+          claimName: claimname.2
+
+#This is PersistentVolume Kube Object with Name
+#pvo.0.yml
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    generated.by: 8gwifi.org
+  name: pvo.0
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: sonarqube_data
+    type: Directory
+  persistentVolumeReclaimPolicy: Retain
+
+#This is PersistentVolume Kube Object with Name
+#pvo.1.yml
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    generated.by: 8gwifi.org
+  name: pvo.1
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: sonarqube_extensions
+    type: Directory
+  persistentVolumeReclaimPolicy: Retain
+
+#This is PersistentVolume Kube Object with Name
+#pvo.2.yml
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    generated.by: 8gwifi.org
+  name: pvo.2
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: sonarqube_logs
+    type: Directory
+  persistentVolumeReclaimPolicy: Retain
+
+#This is PersistentVolumeClaim Kube Object with Name
+#claimname.0.yml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    generated.by: 8gwifi.org
+  name: claimname.0
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: pvo.0
+
+#This is PersistentVolumeClaim Kube Object with Name
+#claimname.1.yml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    generated.by: 8gwifi.org
+  name: claimname.1
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: pvo.1
+
+#This is PersistentVolumeClaim Kube Object with Name
+#claimname.2.yml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    generated.by: 8gwifi.org
+  name: claimname.2
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: pvo.2
+
+#Generating kubernetes YAML file for the Service db.yml
+
+#This is Deployment Configuration Kube definition
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: demo.37
+  name: deployment.name.67
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: demo.37
+  template:
+    metadata:
+      labels:
+        app: demo.37
+      namespace: default
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_USER
+          value: sonar
+        - name: POSTGRES_PASSWORD
+          value: sonar
+        image: postgres:12
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /var/lib/postgresql
+          name: pvo.0
+        - mountPath: /var/lib/postgresql/data
+          name: pvo.1
+      terminationGracePeriodSeconds: 0
+      volumes:
+      - name: pvo.0
+        persistentVolumeClaim:
+          claimName: claimname.0
+      - name: pvo.1
+        persistentVolumeClaim:
+          claimName: claimname.1
+
+#This is PersistentVolume Kube Object with Name
+#pvo.0.yml
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    generated.by: 8gwifi.org
+  name: pvo.0
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: postgresql
+    type: Directory
+  persistentVolumeReclaimPolicy: Retain
+
+#This is PersistentVolume Kube Object with Name
+#pvo.1.yml
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    generated.by: 8gwifi.org
+  name: pvo.1
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: postgresql_data
+    type: Directory
+  persistentVolumeReclaimPolicy: Retain
+
+#This is PersistentVolumeClaim Kube Object with Name
+#claimname.0.yml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    generated.by: 8gwifi.org
+  name: claimname.0
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: pvo.0
+
+#This is PersistentVolumeClaim Kube Object with Name
+#claimname.1.yml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    generated.by: 8gwifi.org
+  name: claimname.1
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: pvo.1
