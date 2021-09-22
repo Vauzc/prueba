@@ -9,7 +9,7 @@ kind: Service
 metadata:
   annotations:
     generated.by: 8gwifi.org
-  name: service.name.2
+  name: service-2
   namespace: default
 spec:
   ports:
@@ -29,7 +29,7 @@ kind: Deployment
 metadata:
   labels:
     app: demo.1
-  name: deployment.name.31
+  name: deployment-1
   namespace: default
 spec:
   replicas: 1
@@ -84,7 +84,7 @@ kind: PersistentVolume
 metadata:
   annotations:
     generated.by: 8gwifi.org
-  name: pvo.0
+  name: pvc-1
   namespace: default
 spec:
   accessModes:
@@ -104,7 +104,7 @@ kind: PersistentVolume
 metadata:
   annotations:
     generated.by: 8gwifi.org
-  name: pvo.1
+  name: pvc-2
   namespace: default
 spec:
   accessModes:
@@ -124,7 +124,7 @@ kind: PersistentVolume
 metadata:
   annotations:
     generated.by: 8gwifi.org
-  name: pvo.2
+  name: pvc-3
   namespace: default
 spec:
   accessModes:
@@ -162,7 +162,7 @@ kind: PersistentVolumeClaim
 metadata:
   annotations:
     generated.by: 8gwifi.org
-  name: claimname.1
+  name: claim-1
   namespace: default
 spec:
   accessModes:
@@ -180,7 +180,7 @@ kind: PersistentVolumeClaim
 metadata:
   annotations:
     generated.by: 8gwifi.org
-  name: claimname.2
+  name: claim-2
   namespace: default
 spec:
   accessModes:
@@ -199,7 +199,7 @@ kind: Deployment
 metadata:
   labels:
     app: demo.37
-  name: deployment.name.67
+  name: deployment-3
   namespace: default
 spec:
   replicas: 1
@@ -243,7 +243,7 @@ kind: PersistentVolume
 metadata:
   annotations:
     generated.by: 8gwifi.org
-  name: pvo.0
+  name: pvo-4
   namespace: default
 spec:
   accessModes:
@@ -263,7 +263,7 @@ kind: PersistentVolume
 metadata:
   annotations:
     generated.by: 8gwifi.org
-  name: pvo.1
+  name: pvo-5
   namespace: default
 spec:
   accessModes:
@@ -301,7 +301,7 @@ kind: PersistentVolumeClaim
 metadata:
   annotations:
     generated.by: 8gwifi.org
-  name: claimname.1
+  name: claim-5
   namespace: default
 spec:
   accessModes:
